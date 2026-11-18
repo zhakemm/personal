@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zhansaya Musabekova · Software Engineer</title>
+  <meta name="description" content="Zhansaya Musabekova, software engineer (Go).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f11;
+      --card: #17171b;
+      --line: #26262c;
+      --text: #ededf0;
+      --muted: #8b8b95;
+      --accent: #c8f169;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #fafaf8;
+        --card: #ffffff;
+        --line: #e6e6e2;
+        --text: #141416;
+        --muted: #6b6b73;
+        --accent: #4d7c0f;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 72px 24px 48px;
+    }
+    a { color: inherit; }
+
+    /* hero */
+    .hero { display: flex; align-items: center; gap: 20px; margin-bottom: 28px; }
+    .avatar {
+      width: 76px; height: 76px; flex-shrink: 0;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--card);
+      border: 1px solid var(--line);
+      display: grid; place-items: center;
+      font-family: var(--mono); font-size: 22px; color: var(--accent);
+    }
+    h1 { font-size: 30px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+    .role { font-family: var(--mono); font-size: 14px; color: var(--muted); margin-top: 4px; }
+    .role span { color: var(--accent); }
+
+    .summary { font-size: 17px; color: var(--text); margin-bottom: 28px; }
+    .summary p + p { margin-top: 12px; }
+    .summary .dim { color: var(--muted); }
+
+    /* links */
+    .links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 56px; }
+    .links a {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 14px;
+      text-decoration: none;
+      background: var(--card);
+      transition: border-color .15s, transform .15s;
+    }
+    .links a:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .links a.cv { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 500; }
+    .links svg { width: 16px; height: 16px; }
+
+    /* sections */
+    section { margin-bottom: 48px; }
+    h2 {
+      font-family: var(--mono);
+      font-size: 13px; font-weight: 500;
+      text-transform: lowercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    h2::before { content: "// "; color: var(--accent); }
+
+    .projects { display: grid; gap: 12px; }
+    .project {
+      display: block;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      text-decoration: none;
+      transition: border-color .15s;
+    }
+    a.project:hover { border-color: var(--accent); }
+    .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .project h3 { font-size: 16px; font-weight: 600; }
+    .project .arrow { font-family: var(--mono); color: var(--muted); font-size: 14px; }
+    .project p { color: var(--muted); font-size: 15px; margin-top: 4px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .tag {
+      font-family: var(--mono); font-size: 12px;
+      padding: 2px 8px; border-radius: 6px;
+      background: var(--bg); border: 1px solid var(--line); color: var(--muted);
+    }
+
+    .date { font-family: var(--mono); font-size: 13px; font-weight: 400; color: var(--muted); white-space: nowrap; }
+    .pos { font-size: 14px; color: var(--muted); margin-top: 2px; }
+    .project .pos + p { color: var(--text); }
+    .edu { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-weight: 600; }
+    .stack { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stack .tag { font-size: 13px; padding: 4px 10px; color: var(--text); }
+
+    .now {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 16px 20px;
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      font-size: 15px;
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); margin-top: 8px; flex-shrink: 0;
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent);
+    }
+    .now .dim { color: var(--muted); }
+
+    footer {
+      margin-top: 64px; padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono); font-size: 12px; color: var(--muted);
+      display: flex; justify-content: space-between;
+    }
+
+    @media (max-width: 520px) {
+      main { padding-top: 48px; }
+      h1 { font-size: 25px; }
+      .avatar { width: 64px; height: 64px; }
+      .links a { font-size: 13px; padding: 10px 6px; gap: 6px; }
+    }
+    @media (max-width: 340px) {
+      .links { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+      <!-- photo.jpg next to this file; if it's missing, initials are shown -->
+      <img class="avatar" src="photo.jpg" alt="Zhansaya Musabekova"
+           onerror="this.outerHTML='&lt;div class=&quot;avatar&quot; aria-hidden=&quot;true&quot;&gt;ZM&lt;/div&gt;'">
+      <div>
+        <h1>Zhansaya Musabekova</h1>
+        <div class="role">software engineer <span>·</span> go <span>·</span> python <span>·</span> vue</div>
+      </div>
+    </header>
+
+    <div class="summary">
+      <p>Software engineer with 4 years of experience in Go, building and scaling microservice systems in fintech, medtech and civic tech.</p>
+      <p class="dim">I work on payments and bank integrations, event-driven systems with Kafka, RabbitMQ and NATS, PostgreSQL and Redis, with a focus on reliability and observability. I also mentor junior engineers and review code.</p>
+    </div>
+
+    <!-- ===== LINKS ===== -->
+    <nav class="links">
+      <a class="cv" href="cv.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3"/></svg> CV</a>
+      <a href="https://github.com/zhosyaaa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.6 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg> GitHub</a>
+      <a href="https://www.linkedin.com/in/zhansaya-musabekova/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg> LinkedIn</a>
+      <a href="https://leetcode.com/u/zhosyaaa/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg> LeetCode</a>
+      <a href="https://t.me/zhosyam" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5l18.9-7.3c.9-.3 1.6.2 1.4 1.6z"/></svg> Telegram</a>
+      <a href="mailto:musabecova05@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg> Email</a>
+    </nav>
+
+    <section>
+      <h2>experience</h2>
+      <div class="projects">
+        <div class="project">
+          <div class="project-head"><h3>Acquiring &amp; online lending</h3><span class="date">2026 – now</span></div>
+          <div class="pos">OnePay · Software Engineer</div>
+          <p>Payment processing for an acquiring company: Halyk, BCC and Jusan bank integrations, recurring payments, refunds. Plus an online lending platform for a pawnshop.</p>
+          <div class="tags"><span class="tag">go</span><span class="tag">temporal</span><span class="tag">kafka</span><span class="tag">kubernetes</span></div>
+        </div>
+        <div class="project">
+          <div class="project-head"><h3>Parking enforcement system</h3><span class="date">2025 – 2026</span></div>
+          <div class="pos">HardCode · Golang Developer</div>
+          <p>Takes events from parking cameras, checks license plates with an ML model, validates payments and issues fines automatically.</p>
+          <div class="tags"><span class="tag">go</span><span class="tag">rabbitmq</span><span class="tag">keycloak</span><span class="tag">grpc</span></div>
+        </div>
+        <div class="project">
+          <div class="project-head"><h3>Pharmacy marketplace</h3><span class="date">2023 – 2025</span></div>
+          <div class="pos">Daribar · Golang Backend Developer</div>
+          <p>Payments and payouts across 1000+ pharmacies, a bonus system and integrations with pharmacy stock systems.</p>
+          <div class="tags"><span class="tag">go</span><span class="tag">clickhouse</span><span class="tag">nats</span><span class="tag">redis</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>stack</h2>
+      <div class="stack">
+        <span class="tag">go</span><span class="tag">python</span><span class="tag">vue</span><span class="tag">postgresql</span><span class="tag">redis</span><span class="tag">kafka</span><span class="tag">rabbitmq</span><span class="tag">nats</span><span class="tag">grpc</span><span class="tag">docker</span><span class="tag">kubernetes</span><span class="tag">grafana</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>education</h2>
+      <div class="edu"><span>Astana IT University</span><span class="date">2025</span></div>
+      <div class="pos">BSc, Software Engineering</div>
+    </section>
+
+    <footer>
+      <span>© 2026 zhansaya musabekova</span>
+      <a href="#" style="text-decoration:none">↑ top</a>
+    </footer>
+
+  </main>
+</body>
+</html>
